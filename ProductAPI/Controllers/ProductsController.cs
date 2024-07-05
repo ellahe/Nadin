@@ -21,7 +21,7 @@ namespace ProductAPI.Controllers
         }
 
         [HttpPost]
-       // [Authorize]
+        [Authorize]
         public async Task<IActionResult> CreateProduct([FromBody] ProductRequest productRequest)
         {
             var userId = _userManager.GetUserId(User);
