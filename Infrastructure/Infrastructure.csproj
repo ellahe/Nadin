@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="Domain">
       <HintPath>..\Domain\bin\Debug\net8.0\Domain.dll</HintPath>
     </Reference>
