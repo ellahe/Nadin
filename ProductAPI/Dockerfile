@@ -10,16 +10,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["NadinPresentation/NadinPresentation.csproj", "NadinPresentation/"]
-RUN dotnet restore "NadinPresentation/NadinPresentation.csproj"
+COPY ["NadinPresentation/ProductAPI.csproj", "ProductAPI/"]
+RUN dotnet restore "NadinPresentation/ProductAPI.csproj"
 COPY . .
-WORKDIR "/src/NadinPresentation"
-RUN dotnet build "NadinPresentation.csproj" -c Release -o /app/build
+WORKDIR "/src/ProductAPI"
+RUN dotnet build "ProductAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "NadinPresentation.csproj" -c Release -o /app/publish
+RUN dotnet publish "ProductAPI.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "NadinPresentation.dll"]
+ENTRYPOINT ["dotnet", "ProductAPI.dll"]
